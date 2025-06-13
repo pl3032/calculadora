@@ -1,1 +1,1 @@
-gunicorn myapp.app:app
+web: gunicorn server:application --workers 2
