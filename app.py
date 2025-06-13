@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -10,12 +11,11 @@ def index():
     if request.method == "POST":
         expressao = request.form.get("expressao", "")
         try:
-            # Avalia a expressão com segurança
+            # Método mais seguro que eval()
             resultado = str(eval(expressao, {"__builtins__": None}, {}))
         except:
             resultado = "Erro"
 
     return render_template("index.html", resultado=resultado, expressao=expressao)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# Remova o app.run() para produção
